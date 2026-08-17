@@ -18,7 +18,6 @@ void test_generic(){
     printf("\nLength AFTER DELETION OF HEAD ELEMENT : %d" ,slist_length(list));
     slist_delete_tail(list);
     printf("\nAFTER DELETION OF TAIL ELEMENT : %d\n" ,slist_length(list));
-    // assert(slist_length(list)==2);
     slist_add_bw(list,100);
     printf("After adding element in bw : %d", slist_length(list));
     display(list);
