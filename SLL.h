@@ -29,6 +29,10 @@ List* slist_delete_head(List *list);
 List* slist_delete_bw(List *list);
 List* slist_delete_tail(List *list);
 List* slist_delete_on_data(List *list, uint32_t data);
+List* slist_rev(List *list);
+List *slist_rem_dup(List *list);
+void slist_nth_node(List *list);
+void slist_min_max(List *list);
 void display(const List *list);
 
 #endif
