@@ -91,6 +91,39 @@ List* slist_add_tail(List *list, uint32_t data){
     return list;
 }
 
+List*  slist_add_on_data(List *list, uint32_t key,uint32_t data){
+    Node *node = list_node_new(data);
+    node -> next = NULL;
+    if(list -> head == NULL){
+        list->head = node;
+        list->tail = node;
+    }
+    else{
+        Node *temp = list -> head;
+        while(temp!=NULL){
+            if(temp->data == key && temp -> next !=NULL){
+                node->next = temp -> next;
+                temp->next = node;
+                ++list->length;
+                break;
+            }
+            if(temp->data == key && temp -> next == NULL){
+                temp->next = node;
+                list->tail = node;
+                ++list->length;
+                break;
+            }
+            temp = temp->next;
+            if(temp->data!=key&&temp->next==NULL){
+                printf("\nKey Not Found\n");
+                free(node);
+                break;
+            }
+        }
+
+    }
+    return list;
+}
 
 uint32_t slist_length(const List *list){
     return list->length;
@@ -146,9 +179,12 @@ List* slist_delete_bw(List *list){
         return list;
     }
 
-    free(temp->next);
-    temp->next = temp->next->next;
+    Node *del = temp->next;      
+    temp->next = del->next;      
+    free(del);                   
+
     --list->length;
+
     return list;
 
 }
@@ -181,6 +217,39 @@ List* slist_delete_tail(List *list) {
     --list->length;
 
     return list;
+}
+
+List *slist_delete_on_data(List *list, uint32_t data){
+    if(list->head == NULL){
+        list->tail =NULL;
+        printf("\nEMPTY LIST\n");
+    }
+    else{
+        Node *temp = list->head;
+        Node *p;
+        if(temp->data == data){
+            list->head = temp->next;
+        }
+        else{
+            p = temp;
+            temp = temp ->next;
+            while(temp!=NULL){
+                if(temp->data == data){
+                    p->next = temp->next;
+                }
+                else{
+                    p = temp;
+                    temp = temp->next;
+                }
+            }
+            if(temp == list->tail){
+                list->tail = p;
+            }
+        }
+        
+        free(temp);
+        --list->length;
+    }
 }
 
 void display(const List *list){

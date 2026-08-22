@@ -23,6 +23,11 @@ void test_generic(){
     display(list);
     slist_delete_bw(list);
     printf("After Deleting element in bw : %d", slist_length(list));
+    // display(list);
+    slist_add_on_data(list, 150,17);
+    printf("\nAfter add_on function : %d", slist_length(list));
+    slist_delete_on_data(list, 20);
+    printf("\nAfter add_on function : %d", slist_length(list));
     display(list);
     printf("\nASSERTIONS PASSED\n");
 }

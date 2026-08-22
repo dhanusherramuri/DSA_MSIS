@@ -22,11 +22,13 @@ List* slist_free(List *list);
 List* slist_add_head(List *list, uint32_t data);
 List* slist_add_bw(List *list, uint32_t data);
 List* slist_add_tail(List *list, uint32_t data);
+List* slist_add_on_data(List *list,uint32_t key, uint32_t data);
 uint32_t slist_length(const List *list);
 uint32_t slist_lookup(const List *list, uint32_t key);
 List* slist_delete_head(List *list);
 List* slist_delete_bw(List *list);
 List* slist_delete_tail(List *list);
+List* slist_delete_on_data(List *list, uint32_t data);
 void display(const List *list);
 
 #endif
