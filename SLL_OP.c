@@ -45,6 +45,7 @@ void test_generic(){
     slist_nth_node(list);
     slist_rem_dup(list);
     display(list);
+    slist_cycle(list);
     // slist_free(list);
     printf("\nASSERTIONS PASSED\n");
 }

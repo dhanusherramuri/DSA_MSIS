@@ -88,6 +88,7 @@ List* slist_add_tail(List *list, uint32_t data){
     else{
         list->tail->next=node;
         list -> tail = node;
+        // list->tail->next=list->head; /*THIS IS TO CHECK IF THE CYCLE WORKS*/
     }
     ++list->length;
     return list;
@@ -143,6 +144,32 @@ uint32_t slist_lookup(const List *list, uint32_t key){
     }
     return (temp!=NULL);
 }
+void slist_cycle(const List *list){
+    if(list->head == NULL){
+        printf("\n EMPTY LIST\n");
+    }
+    else{
+        Node *temp = list->head;
+        Node *curr = temp->next;
+        // if(list->tail->next == list->head){
+        //     printf("\nCYCLE FOUND\n");
+        // }
+        while(temp!=NULL){
+            while(curr != NULL){
+                if(curr -> next == temp){
+                    printf("\nCYCLE FOUND\n");
+                    break;
+                }
+                curr = curr->next;
+            }
+            temp = temp->next;
+            if(temp == NULL && curr == NULL){
+                printf("\nNO CYCLE FOUND\n");
+            }
+        }
+    }
+}
+
 
 List* slist_delete_head(List *list){
 
