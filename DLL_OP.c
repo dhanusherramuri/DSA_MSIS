@@ -39,6 +39,14 @@ void test_dll(){
     dll_display(list);
     dll_min_max(list);
     dll_lookup(list,150);
+    printf ("\nLIST BEFORE REVERSE :");
+    dll_display(list);
+    dll_rev(list);
+    printf ("\nLIST AFTER REVERSE : " );
+    dll_display(list);
+    dll_rem_dup(list);
+    printf ("\nLIST AFTER DELETE DUPLICATES : " );
+    dll_display(list);
     printf("\n\n ALL ASSERTIONS PASSED\n\n");
 }
 

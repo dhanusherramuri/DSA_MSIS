@@ -254,6 +254,92 @@ void dll_min_max( List *list){
     return;
 }
 
+
+List* dll_rev(List *list){
+    if(list -> head == NULL ){
+        list -> tail = NULL;
+    }
+    else{
+        Node *temp = list -> tail;
+        list -> tail = list -> head;
+        list -> head = temp;
+        list -> head -> next = list -> head -> prev;
+        list -> head -> prev = NULL;
+        temp = list -> head -> next;
+        Node * curr = temp;
+        while(temp!=NULL){
+            temp = temp -> prev;
+            curr -> prev = curr -> next;
+            curr -> next = temp;
+            curr = temp;
+        }
+    }
+    return list;
+}
+
+
+List* dll_rem_dup(List *list) {
+    if (list->head == NULL) {
+        list->tail = NULL;
+        list->length = 0;
+        return list;
+    }
+
+    Node *cur = list->head;
+
+    while (cur != NULL) {
+        Node *ptr = cur->next;
+        Node *temp = cur;
+
+        while (ptr != NULL) {
+            if (cur->data == ptr->data) {
+                temp->next = ptr->next;
+
+                if (ptr->next != NULL) {
+                    ptr->next->prev = temp;
+                } else {
+                    list->tail = temp;
+                }
+
+                free(ptr);
+                --list->length;
+
+                ptr = temp->next;
+            } else {
+                temp = ptr;
+                ptr = ptr->next;
+            }
+        }
+
+        cur = cur->next;
+    }
+
+    return list;
+}
+
+void dll_cycle(const List *list) {
+    if (list->head == NULL) {
+        printf("\nEMPTY LIST\n");
+        return;
+    }
+
+    Node *f = list->head;
+    Node *s = list->head;
+
+    while (f != NULL && f->next != NULL) {
+        s = s->next;
+        f = f->next->next;
+
+        if (f == s) {
+            printf("\nCYCLE FOUND\n");
+            return;
+        }
+    }
+
+    printf("\nNO CYCLE FOUND\n");
+}
+
+
 uint32_t dll_length(const List *list){
     return list->length;
 }
