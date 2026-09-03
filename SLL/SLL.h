@@ -1,6 +1,6 @@
 #ifndef _INCLUDED_SLIST
 #define _INCLUDED_SLIST
-#include<stdio.h>
+#include <stdio.h>
 #include <stdint.h>
 
 typedef struct _node_ Node;
