@@ -21,14 +21,23 @@ void test_UI(){
     assert(b_list->length == 3);
     printf("\nLength of the list: %d\n", b_list->length);
     display_UI(b_list);
-
+   
+    //CHECK THE UNION OF TWO LISTS
+    printf("\n\n*******UNION********");
+    List *d_list = list_new();
+    list_union(a_list, b_list, d_list);
+    printf("\nLength of the list: %d\n", d_list->length);
+    display_UI(d_list);
+    
     //CHECK THE INTERSECTION OF TWO LISTS
     printf("\n\n*******INTERSECTION********");
     List *c_list = list_new();
     list_intersect(a_list, b_list, c_list);
     printf("\nLength of the list: %d\n", c_list->length);
     display_UI(c_list);
+   
     printf("\nASSERTIONS PASSED\n");
+
 }
 
 int main(){

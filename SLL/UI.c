@@ -38,7 +38,7 @@ List* list_add(List *list, uint32_t data){
     return list;
 }
 
-List* list_intersect(List *list1, List *list2,List *list3){
+List* list_union(List *list1, List *list2,List *list3){
 
     Node *temp1 = list1 -> head;
     Node *temp2 = list2 -> head;
@@ -68,6 +68,44 @@ List* list_intersect(List *list1, List *list2,List *list3){
     }
     return list3;
 
+}
+
+List* list_intersect(List *list1,List *list2,List *list4){
+    Node *t1 = list1 -> head;
+    
+    while(t1 != NULL){
+        int flag = 0;
+        Node *t2 = list2 -> head;
+
+        while( t2 != NULL ){
+
+            if(t1 -> data == t2 -> data){
+                flag = 1;
+                t2 = t2 -> next;
+                break;
+            }
+            t2 = t2 -> next;
+        }
+        if(flag){
+            Node *t4 = list4 -> head;
+            int f = 0;
+            while(t4!=NULL){
+                if( t4 -> data == t1 -> data ){
+                    t4 = t4 -> next;
+                    f = 1;
+                    break;
+                }
+                t4 = t4 -> next;
+            }
+            if(!f){
+                list_add(list4, t1 -> data);
+                f = 0;
+            }
+            flag = 0;
+        }
+        t1 = t1 -> next;
+    }
+    return list4;
 }
 
 void display_UI(const List *list){
