@@ -108,6 +108,29 @@ List* list_intersect(List *list1,List *list2,List *list4){
     return list4;
 }
 
+List* list_diff(List *list1, List *list2, List *list5){
+    Node *t1 = list1 -> head;
+    
+    while( t1 != NULL){
+        Node *t2 = list2 -> head;
+        int flag = 0;
+        while ( t2 != NULL){
+            if(t2 -> data == t1 -> data){
+                flag = 1;
+                t2 = t2 -> next;
+            }
+            t2 = t2 -> next;
+        }
+        if(!flag){
+            list_add(list5, t1 -> data);
+            flag = 0;
+        }
+
+        t1 = t1 -> next;
+    }
+    return list5;
+}
+
 void display_UI(const List *list){
     if( list -> head == NULL){
         printf("\n EMPTY LIST \n");

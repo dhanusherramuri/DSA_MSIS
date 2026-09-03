@@ -35,6 +35,13 @@ void test_UI(){
     list_intersect(a_list, b_list, c_list);
     printf("\nLength of the list: %d\n", c_list->length);
     display_UI(c_list);
+
+    //CHECK A - B
+    printf("\n\n******* A - B ********");
+    List *e_list = list_new();
+    list_diff(a_list, b_list, e_list);
+    printf("\nLength of the list: %d\n", e_list->length);
+    display_UI(e_list);
    
     printf("\nASSERTIONS PASSED\n");
 
