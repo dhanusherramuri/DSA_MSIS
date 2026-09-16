@@ -1,14 +1,14 @@
 #include "Bubble.h"
 
-int* sort(int arr[], int n){
-    for(int i = 0 ;  i < n; i++){
-        for(int j = i+1 ; j < n; j++){
-            if ( arr[j] < arr[i]){
-                int t = arr[i];
-                arr[i] = arr[j];
-                arr[j] = t;
-            }
-        }
+void test(){
+    int arr [] = {20,52,1,0,26};
+    sort(arr,5);
+    for(int i = 0; i < 5; i++){
+        printf("%d ",arr[i]);
     }
-    return arr;
+}
+
+int main(){
+    test();
+    return 0;
 }
