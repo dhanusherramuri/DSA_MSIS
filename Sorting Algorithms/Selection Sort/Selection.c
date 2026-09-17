@@ -7,10 +7,10 @@ int* sort(int arr[], int n){
             if ( arr[j] < arr[min]){
                 min = j;
             }
-            int t = arr[i];
-            arr[i] = arr[min];
-            arr[min] = t;
         }
+        int t = arr[i];
+        arr[i] = arr[min];
+        arr[min] = t;
     }
     return arr;
 }
