@@ -17,22 +17,41 @@ void test_bst(void)
     bst_insert(&tree,  40);
     bst_insert(&tree,  60);
     bst_insert(&tree,  80);
+    
+
 
     /* Search */
-    printf("Searching for 40: ");
-    bst_search(&tree,  40);
+    printf("Searching for 20: %d", bst_search(&tree,90));
+    
+    /* Mass and height */
+    printf("\nMass: %u", bst_mass(&tree));
+    printf("\nHeight: %u", bst_height(&tree));
+    
+    /* Traversals */
+    printf("\nPreorder: \t");
+    bst_traversal_preorder(&tree);
+    
+    printf("\nInorder:\t");
+    bst_traversal_inorder(&tree);
+    
+    printf("\nPostorder:\t");
+    bst_traversal_postorder(&tree);
+    
+    /* DELETION */
+    bst_delete_rec(&tree,  20);
+
 
     /* Mass and height */
     printf("\nMass: %u", bst_mass(&tree));
     printf("\nHeight: %u", bst_height(&tree));
-
+    
     /* Traversals */
     printf("\nPreorder: \t");
     bst_traversal_preorder(&tree);
-
+    
     printf("\nInorder:\t");
     bst_traversal_inorder(&tree);
-
+    
     printf("\nPostorder:\t");
     bst_traversal_postorder(&tree);
 }

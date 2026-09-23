@@ -1,4 +1,7 @@
 #include "BST.h"
+// #include "../Stack & Queue Arr/Stack_Arr.h"
+// #include "Stack_Arr.h"
+// #include "Queue.h"
 
 BST bst_new(){
     BST tree = {NULL,0}; 
@@ -26,7 +29,6 @@ BST* bst_insert(BST *tree,  int32_t data){
         }
     }
     TreeNode *temp = _make_treenode_(data);
-    // if(root == NULL){
         if( parent == NULL){
             tree -> root = temp;
         }
@@ -37,14 +39,60 @@ BST* bst_insert(BST *tree,  int32_t data){
             parent -> right = temp;
         }
         ++tree -> mass;
-    // }
+        return tree;
+}
+static TreeNode* _min_(TreeNode * root){
+    if( root -> left == NULL){
+        return root;
+    }
+    else{
+        return _min_(root -> left);
+    }
+}
+
+static TreeNode* _delete_(BST *tree,TreeNode *root, int32_t key){
+    TreeNode *temp = tree -> root;
+    if(root == NULL){
+        return root;
+    }
+    else if(key < root -> data){
+        root->left = _delete_(tree, root-> left, key);
+    }
+    else if(key > root -> data){
+        root -> right = _delete_(tree, root -> right, key);
+    }
+    else if(root -> left && root ->right){
+        temp = _min_(root -> right);
+        root -> data = temp -> data;
+        root -> right = _delete_(tree, root -> right, root -> data);
+    }
+    else{
+        temp = root;
+        if ( root -> left = NULL ){
+            root = root -> right;
+        }
+        else{
+            root = root -> right;
+        }
+        free (temp);
+        -- tree -> mass;
+    }
+    return root;
+}
+
+BST* bst_delete_rec(BST *tree, uint32_t key){
+    TreeNode *root = _delete_(tree,tree->root,key);
+    root = tree -> root;
     return tree;
 }
 
 uint32_t bst_search(BST *tree, int32_t key){
     TreeNode *root = tree -> root;
     while(root != NULL){
-        if(key < root -> data){
+        if( key == root -> data){
+            return 1;
+        }
+        else if(key < root -> data){
             root = root -> left;
         }
         else if (key > root -> data){
@@ -121,3 +169,22 @@ BST* bst_traversal_postorder(BST *tree){
     _postorder_(tree -> root);
     return tree;
 }
+
+// BST* bst_traversal_inorder_iterative(BST *tree){
+//     Stack stk = stack_new(0);
+//     StackResult res;
+//     TreeNode *root = tree -> root;
+//     while(root != NULL || !isempty(&stk)){
+//         if(root){
+//             push(&stk,root->data,&res);
+//             root = root ->left;
+//         }
+//         else{
+//             pop(&stk,&res);
+//             root -> data = (int)res.data;
+//             printf("%d\t" ,root -> data);
+//             root = root -> right;
+//         }
+//     }
+//     return tree;
+// }

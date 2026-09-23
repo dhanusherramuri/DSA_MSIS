@@ -1,4 +1,4 @@
-#include "Stack.h"
+#include "Stack_Arr.h"
 
 void test(){
     Stack stk1 = stack_new(6);
