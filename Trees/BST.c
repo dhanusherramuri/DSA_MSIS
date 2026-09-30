@@ -1,7 +1,7 @@
 #include "BST.h"
 // #include "../Stack & Queue Arr/Stack_Arr.h"
-// #include "Stack_Arr.h"
-// #include "Queue.h"
+#include "Stack_Arr.h"
+#include "Queue.h"
 
 BST bst_new(){
     BST tree = {NULL,0}; 
@@ -170,21 +170,21 @@ BST* bst_traversal_postorder(BST *tree){
     return tree;
 }
 
-// BST* bst_traversal_inorder_iterative(BST *tree){
-//     Stack stk = stack_new(0);
-//     StackResult res;
-//     TreeNode *root = tree -> root;
-//     while(root != NULL || !isempty(&stk)){
-//         if(root){
-//             push(&stk,root->data,&res);
-//             root = root ->left;
-//         }
-//         else{
-//             pop(&stk,&res);
-//             root -> data = (int)res.data;
-//             printf("%d\t" ,root -> data);
-//             root = root -> right;
-//         }
-//     }
-//     return tree;
-// }
+BST* bst_traversal_inorder_iterative(BST *tree){
+    Stack stk = stack_new(0);
+    StackResult res;
+    TreeNode *root = tree -> root;
+    while(root != NULL || !isempty(&stk)){
+        if(root){
+            push(&stk,root->data,&res);
+            root = root ->left;
+        }
+        else{
+            pop(&stk,&res);
+            root -> data = (int)res.data;
+            printf("%d\t" ,root -> data);
+            root = root -> right;
+        }
+    }
+    return tree;
+}
