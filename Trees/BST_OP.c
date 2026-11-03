@@ -21,7 +21,7 @@ void test_bst(void)
 
 
     /* Search */
-    printf("Searching for 20: %d", bst_search(&tree,90));
+    printf("Searching for 20: %d", bst_search(&tree,20));
     
     /* Mass and height */
     printf("\nMass: %u", bst_mass(&tree));

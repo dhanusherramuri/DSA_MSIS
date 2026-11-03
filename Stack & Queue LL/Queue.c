@@ -68,7 +68,46 @@ List* Dequeue(List *list)
     return list;
 }
 
+List* Reverse(List *list)
+{
+    if (list == NULL || list->head == NULL)
+        return list;
 
+    uint32_t k;
+
+    printf("Enter the number of elements to reverse: ");
+    scanf("%u", &k);
+
+    if (k <= 1)
+        return list;
+
+    if (k > list->length)
+        k = list->length;
+
+    Node *prev = NULL;
+    Node *curr = list->head;
+    Node *next = NULL;
+    Node *old_head = list->head;
+
+    uint32_t count = 0;
+
+    while (curr != NULL && count < k)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+        count++;
+    }
+
+    list->head = prev;
+    old_head->next = curr;
+
+    if (curr == NULL)
+        list->tail = old_head;
+
+    return list;
+}
 
 uint32_t isEmpty(const List *list){
     if( list == NULL){
