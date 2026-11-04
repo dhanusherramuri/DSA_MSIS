@@ -1,4 +1,6 @@
 #include "Employee.h"
+
+
 Employee* new_employee(int id,char name[],float salary){
     Employee *emp=(Employee*)malloc(sizeof(Employee));
     if(emp==NULL)
@@ -10,6 +12,8 @@ Employee* new_employee(int id,char name[],float salary){
     emp->right=NULL;
     return emp;
 }
+
+
 Employee* insert_employee(Employee *root,int id,char name[],float salary){
     if(root==NULL)
         return new_employee(id,name,salary);
@@ -21,6 +25,8 @@ Employee* insert_employee(Employee *root,int id,char name[],float salary){
         printf("Employee ID already exists\n");
     return root;
 }
+
+
 Employee* search_employee(Employee *root,int id){
     if(root==NULL || root->emp_id==id)
         return root;
@@ -28,6 +34,8 @@ Employee* search_employee(Employee *root,int id){
         return search_employee(root->left,id);
     return search_employee(root->right,id);
 }
+
+
 void display_employee(Employee *emp){
     if(emp==NULL)
         return;
@@ -35,6 +43,8 @@ void display_employee(Employee *emp){
     printf("\nName: %s",emp->name);
     printf("\nSalary: %.2f\n",emp->salary);
 }
+
+
 void display_salary_range(Employee *root){
     if(root==NULL)
         return;
@@ -43,6 +53,7 @@ void display_salary_range(Employee *root){
         display_employee(root);
     display_salary_range(root->right);
 }
+
 void display_ascending(Employee *root){
     if(root==NULL)
         return;
