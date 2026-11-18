@@ -3,22 +3,22 @@
 #include <stdio.h>
 
 void test(void) {
-    HashTable h = hashtable_new(10);
+    HashTable h = htb_new(10);
 
-    hashtable_insert_element(&h, "apple");
-    hashtable_insert_element(&h, "banana");
-    hashtable_insert_element(&h, "orange");
+    htb_insert(&h, "apple");
+    htb_insert(&h, "banana");
+    htb_insert(&h, "orange");
 
-    assert(hashtable_find(&h, "apple") == 1);
-    assert(hashtable_find(&h, "banana") == 1);
-    assert(hashtable_find(&h, "grape") == 0);
+    assert(htb_find(&h, "apple") == 1);
+    assert(htb_find(&h, "banana") == 1);
+    assert(htb_find(&h, "grape") == 0);
 
-    hashtable_delete_element(&h, "banana");
+    htb_delete(&h, "banana");
 
-    assert(hashtable_find(&h, "banana") == 0);
-    assert(hashtable_find(&h, "apple") == 1);
+    assert(htb_find(&h, "banana") == 0);
+    assert(htb_find(&h, "apple") == 1);
 
-    hashtable_destroy(&h);
+    htb_destroy(&h);
 
     printf("All tests passed!\n");
 }
